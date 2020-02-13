@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:10.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    restart: always
+    volumes:
+      - mydata:/var/lib/mysql/
+    ports:
+      - "3306:3306"
+
+  spider:
+    build: .
+    restart: always
+    depends_on:
+      - db
+
+volumes:
+  mydata:
+  # 5gtools:
+    
+
